@@ -1,0 +1,35 @@
+<main class="products">
+  <h2>Our Products</h2>
+  <div class="product-list">
+    <div class="product">
+      <img src="assets/product-1.jpg" alt="Laptop" />
+      <h3>Laptop</h3>
+      <p>$999</p>
+      <button class="add-to-cart" data-name="Laptop" data-price="999">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="assets/product-2.jpg" alt="Mouse" />
+      <h3>Mouse</h3>
+      <p>$49</p>
+      <button class="add-to-cart" data-name="Mouse" data-price="49">Add to Cart</button>
+    </div>
+  </div>
+</main>
+<script>
+  const cartCount = document.getElementById('cartCount');
+  const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+  let cart = [];
+
+  addToCartButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const productName = button.getAttribute('data-name');
+      const productPrice = parseFloat(button.getAttribute('data-price'));
+      cart.push({ name: productName, price: productPrice });
+      updateCartCount();
+    });
+  });
+
+  function updateCartCount() {
+    cartCount.innerText = cart.length;
+  }
